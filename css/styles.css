@@ -356,6 +356,17 @@ footer p{
     border-radius: 10px;
 }
 
+#main__banner__doctor {
+    background-image: url(../public/images/doctor.png);
+}
+
+#main__banner__doctor h1,
+#main__banner__doctor h2,
+#main__banner__doctor p,
+#main__banner__doctor a {
+    color: #fff;
+}
+
 .main__banner__image {
     position: absolute;
 }
@@ -441,7 +452,7 @@ th, td {
     padding: 5px;
 }
 
-.doctors {
+.main__table {
     margin-top: 2em;
 }
 
@@ -541,6 +552,20 @@ td a {
 .form__card__dash button:hover {
     background-color: #2389cc;
     transition: 0.2s;
+}
+
+td button {
+    border: none;
+    background-color: #007acc;
+    padding: 3px;
+    color: #fff;
+    transition: 0.2s;
+}
+
+td button:hover {
+    background-color: #2389cc;
+    transition: 0.2s;
+    cursor: pointer;
 }
 
 /* DOCTOR MODAL */

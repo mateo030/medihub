@@ -17,6 +17,7 @@ function login($pdo, $user_email, $user_pass) {
         if ($user_email == $row['user_email'] && $user_pass == $row['user_pass']) {
 
             session_start();
+            $_SESSION['patient_id'] = $row['patient_id'];
             $_SESSION['first_name'] = $row['first_name'];
             $_SESSION['last_name'] = $row['last_name'];
             $_SESSION['contact_number'] = $row['contact_number'];
@@ -31,6 +32,34 @@ function login($pdo, $user_email, $user_pass) {
                 header('Location: ../dashboard/patient/dashboard.php');
             }
             
+
+        } else {
+            echo 'fuck you nigga';
+        }
+
+    }
+}
+
+function doctorLogin($pdo, $user_email, $user_pass) {
+    $query = 'SELECT * FROM doctors WHERE email = :user_email';
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':user_email', $user_email);
+    $stmt->execute();
+    $rows = $stmt->fetchAll();
+
+    foreach ($rows as $row) {
+
+        if ($user_email == $row['email'] && $user_pass == $row['doc_pass']) {
+
+            session_start();
+            $_SESSION['doctor_id'] = $row['doctor_id'];
+            $_SESSION['first_name'] = $row['first_name'];
+            $_SESSION['last_name'] = $row['last_name'];
+            $_SESSION['contact_number'] = $row['contact_number'];
+            $_SESSION['user_email'] = $row['user_email'];
+            $_SESSION['address'] = $row['address'];
+
+            header('Location: ../dashboard/doctor/dashboard.php');
 
         } else {
             echo 'fuck you nigga';

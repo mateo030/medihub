@@ -2,7 +2,6 @@
     <main>
         <div class="hero">
             <img src="public/images/doctors.jpg">
-            <h1>Make an appointment</h1>
         </div>
         <div class="container">
             <div class="container__wrapper">

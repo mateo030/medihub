@@ -145,16 +145,11 @@ connect_DB();
                         <table>
                             <tr>
                                 <th>Appointment No.</th>
-                                <th>Title</th>
+                                <th>Date</th>
+                                <th>Time</th>
                                 <th>Doctor</th>
-                                <th>Scheduled date & time</th>
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Check up</td>
-                                <td>Yra balog</td>
-                                <td>2024/9/28</td>
-                            </tr>
+                            <?= displayMiniAppointmentTable($_SESSION['patient_id']) ?>
                         </table>
                     </div>
                 </div>

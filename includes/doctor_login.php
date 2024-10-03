@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     $errors = [];
 
-    if (!userExists($pdo, $user_email)) {
+    if (!doctorExists($pdo, $user_email)) {
         array_push($errors, 'Your email does not exist');
     }
 
@@ -29,7 +29,5 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
         header('Location:../login.php');
     }
 
-    login($pdo, $user_email, $user_pass);
+    doctorlogin($pdo, $user_email, $user_pass);
 }
-
-    

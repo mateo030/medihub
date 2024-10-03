@@ -78,6 +78,7 @@ connect_DB();
             </div>
             <div class="form__card__dash">
 				<form action="../../includes/appointment_inc.php" method="POST">
+                    <input type="hidden" name="doctor_id" value="<?php echo $_GET['id'] ?>">
                     <div class="select__container">
                         <select class="select__box" name="month">
                             <option value="">Month</option>
@@ -89,7 +90,7 @@ connect_DB();
                         </select>
                     </div>
                     <div class="form__time">
-                        <input type="text" placeholder="Example: 13:00">
+                        <input type="text" name="time" placeholder="Example: 13:00">
                     </div>
 					<button>Book</button>
 					<?php 

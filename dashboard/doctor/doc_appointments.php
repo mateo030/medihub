@@ -2,16 +2,16 @@
 require '../../includes/config/dbh.php';
 require '../../includes/config/functions.php';
 require '../../includes/views/dashboard_view.php';
-//TODO MAKE OWN MODEL AND VIEW FOR DASHBOARD
 session_start();
 connect_DB();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor List</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="../../css/styles.css">
     <script src="https://kit.fontawesome.com/492cd470a0.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,17 +20,18 @@ connect_DB();
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 </head>
+
 <body>
     <div class="dashboard__container">
         <div class="side__menu">
             <div class="upper__nav">
                 <div class="current__user">
                     <div>
-                        <i class="fa-solid fa-user"></i>
+                        <i class="fa-solid fa-user-doctor"></i>
                     </div>
                     <div class="user__name">
-                        <h1><?php echo $_SESSION['first_name'] . " " .$_SESSION['last_name']?></h1>
-                        <p><?php echo $_SESSION['user_email']?></p>
+                        <h1><?php echo $_SESSION['first_name'] . " " . $_SESSION['last_name'] ?></h1>
+                        <p><?php echo $_SESSION['user_email'] ?></p>
                     </div>
                 </div>
                 <a href="../../includes/logout_inc.php">Log out</a>
@@ -39,28 +40,24 @@ connect_DB();
                 <a href="dashboard.php">
                     <div class="nav__wrapper">
                         <i class="fa-solid fa-house"></i>
-                        <p>Home</p>
+                        <p>Dashboard</p>
                     </div>
                 </a>
-                <a href="doctor_list.php">
+                <a href="patients.php">
                     <div class="nav__wrapper">
-                        <i class="fa-solid fa-user-doctor"></i>
-                        <p>All Doctors</p>
+                        <i class="fa-solid fa-user"></i>
+                        <p>My Patients</p>
                     </div>
                 </a>
-                <a href="appointments.php">
+                <a href="doc_appointments.php">
                     <div class="nav__wrapper">
                         <i class="fa-solid fa-hospital-user"></i>
                         <p>Appointments</p>
                     </div>
                 </a>
                 <div class="nav__wrapper">
-                    <i class="fa-solid fa-prescription-bottle-medical"></i>
-                    <a><p>Prescriptions</p></a>
-                </div>
-                <div class="nav__wrapper">
                     <i class="fa-solid fa-gear"></i>
-                    <a><p>Settings</p></a>
+                    <p>Settings</p>
                 </div>
             </div>
         </div>
@@ -80,35 +77,26 @@ connect_DB();
             <div class="appointment__status">
                 <div class="status__card">
                     <div class="status__text">
-                        <h2>2</h2>
+                        <h2><?php echo returnAppointmentCount($_SESSION['doctor_id'], 'Pending')?></h2>
                         <p>Pending Appointments</p>
                     </div>
                     <div>
-                        <i class="fa-solid fa-hospital-user"></i>
+                        <i class="fa-solid fa-hospital-user" style="color: #FFDB39;"></i>
                     </div>
                 </div>
                 <div class="status__card">
                     <div class="status__text">
-                        <h2>2</h2>
-                        <p>Today's Appointments</p>
+                        <h2><?php echo returnAppointmentCount($_SESSION['doctor_id'], 'Confirmed')?></h2>
+                        <p>Confirmed Appointments</p>
                     </div>
                     <div>
-                        <i class="fa-solid fa-hospital-user"></i>
+                        <i class="fa-solid fa-hospital-user" style="color:#2CA58D"></i>
                     </div>
                 </div>
                 <div class="status__card">
                     <div class="status__text">
-                        <h2>2</h2>
+                        <h2><?php echo returnAppointmentCount($_SESSION['doctor_id'], 'Confirmed') + returnAppointmentCount($_SESSION['doctor_id'], 'Pending')?></h2>
                         <p>Total Appointments</p>
-                    </div>
-                    <div>
-                        <i class="fa-solid fa-hospital-user"></i>
-                    </div>
-                </div>
-                <div class="status__card">
-                    <div class="status__text">
-                        <h2>2</h2>
-                        <p>Past Appointments</p>
                     </div>
                     <div>
                         <i class="fa-solid fa-hospital-user"></i>
@@ -122,12 +110,12 @@ connect_DB();
                         <th>Apt No.</th>
                         <th>Date</th>
                         <th>Time</th>
-                        <th>Doctor</th>
+                        <th>Patient</th>
                         <th>Contact</th>
-                        <th>Prescription</th>
+                        <th></th>
                         <th>Status</th>
                     </tr>
-                    <?php displayAppointmentTable($_SESSION['patient_id'], 'Pending')?>
+                    <?php displayAppointmentTable($_SESSION['doctor_id'], 'Pending')?>
                 </table>
             </div>
             <div class="appointments__table">
@@ -137,16 +125,16 @@ connect_DB();
                         <th>Apt No.</th>
                         <th>Date</th>
                         <th>Time</th>
-                        <th>Doctor</th>
+                        <th>Patient</th>
                         <th>Contact</th>
-                        <th>Prescription</th>
+                        <th></th>
                         <th>Status</th>
                     </tr>
-                    <?php displayAppointmentTable($_SESSION['patient_id'], 'Confirmed')?>
+                    <?php displayAppointmentTable($_SESSION['doctor_id'], 'Confirmed')?>
                 </table>
             </div>
         </div>    
     </div>
-    <script src="../../scripts/script.js"></script>
 </body>
+
 </html>
