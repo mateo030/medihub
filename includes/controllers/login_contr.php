@@ -59,3 +59,19 @@ function passwordIsIncorrect($pdo, $user_email, $user_pass) {
         }
     }
 }
+
+function docPassIsIncorrect($pdo, $user_email, $user_pass) {
+    $query = 'SELECT * FROM doctors WHERE email = :email';
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':email', $user_email);
+    $stmt->execute();
+    $rows = $stmt->fetchAll();
+
+    foreach($rows as $row) {
+        if ($user_email == $row['email'] && $user_pass == $row['doc_pass']) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+}

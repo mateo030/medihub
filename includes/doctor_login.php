@@ -21,12 +21,15 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
         array_push($errors, 'Input all fields');
     }
 
+    if(docPassIsIncorrect($pdo, $user_email, $user_pass)) {
+        array_push($errors,'Username or password is incorrect!');
+    }
 
     session_start();
 
     if($errors) {
         $_SESSION['error_login'] = $errors;
-        header('Location:../login.php');
+        header('Location:../doctors.php');
     }
 
     doctorlogin($pdo, $user_email, $user_pass);

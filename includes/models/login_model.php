@@ -34,7 +34,7 @@ function login($pdo, $user_email, $user_pass) {
             
 
         } else {
-            echo 'fuck you nigga';
+            echo 'ERROR';
         }
 
     }
@@ -62,7 +62,7 @@ function doctorLogin($pdo, $user_email, $user_pass) {
             header('Location: ../dashboard/doctor/dashboard.php');
 
         } else {
-            echo 'fuck you nigga';
+            echo 'ERROR';
         }
 
     }
