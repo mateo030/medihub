@@ -43,3 +43,19 @@ function isInputEmpty($user_email, $user_pass) {
     return false;
 
 }
+
+function passwordIsIncorrect($pdo, $user_email, $user_pass) {
+    $query = 'SELECT * FROM patients WHERE user_email = :user_email';
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':user_email', $user_email);
+    $stmt->execute();
+    $rows = $stmt->fetchAll();
+
+    foreach($rows as $row) {
+        if ($user_email == $row['user_email'] && $user_pass == $row['user_pass']) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+}

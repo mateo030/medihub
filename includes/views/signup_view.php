@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-function displayErrorMessage($errors) {
+function displaySignupError($errors) {
 
     foreach ($errors as $error) {
         echo '<div class="error__message">';

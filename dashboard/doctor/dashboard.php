@@ -55,10 +55,12 @@ connect_DB();
                         <p>Appointments</p>
                     </div>
                 </a>
-                <div class="nav__wrapper">
-                    <i class="fa-solid fa-gear"></i>
-                    <p>Settings</p>
-                </div>
+                <a href="doc_prescriptions.php">
+                    <div class="nav__wrapper">
+                        <i class="fa-solid fa-prescription-bottle-medical"></i>
+                        <p>Prescriptions</p>
+                    </div>
+                </a>
             </div>
         </div>
         <div class="main">
@@ -109,15 +111,6 @@ connect_DB();
                             </div>
                             <div>
                                 <i class="fa-solid fa-prescription-bottle-medical"></i>
-                            </div>
-                        </div>
-                        <div class="status__card">
-                            <div>
-                                <h2>2</h2>
-                                <p>My Bookings</p>
-                            </div>
-                            <div>
-                                <i class="fa-regular fa-bookmark"></i>
                             </div>
                         </div>
                         <div class="status__card">

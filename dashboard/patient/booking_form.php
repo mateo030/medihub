@@ -53,14 +53,18 @@ connect_DB();
                         <p>Appointments</p>
                     </div>
                 </a>
-                <div class="nav__wrapper">
-                    <i class="fa-solid fa-prescription-bottle-medical"></i>
-                    <a><p>Prescriptions</p></a>
-                </div>
-                <div class="nav__wrapper">
-                    <i class="fa-solid fa-gear"></i>
-                    <a><p>Settings</p></a>
-                </div>
+                <a href="doc_prescriptions.php">
+                    <div class="nav__wrapper">
+                        <i class="fa-solid fa-prescription-bottle-medical"></i>
+                        <p>Prescriptions</p>
+                    </div>
+                </a>
+                <a href="patient_settings.php">
+                    <div class="nav__wrapper">
+                        <i class="fa-solid fa-gear"></i>
+                        <p>Settings</p>
+                    </div>
+                </a>
             </div>
         </div>
         <div class="main">

@@ -24,15 +24,14 @@ connect_DB();
         <div class="main__left">
             <div class="main__logo">
                 <img src="public/images/logo.png">
-                <h1><a href="doctors.php"><span>Medi</span>Hub</a></h1>
+                <h1><a href="index.php"><span>Medi</span>Hub</a></h1>
             </div>
         </div>
         <div class="main__right">
             <div class="main__login">
-                <form class="main__form" action="includes/login_inc.php" method="GET">
+                <form class="main__form" action="includes/doctor_login.php" method="GET">
                     <div>
-                        <h1>Login</h1>
-                        <p>Dont have an account? <a href="signup.php">sign up</a></p>
+                        <h1>Doctor</h1>
                     </div>
                     <div class="main__input">
                         <input type="email" name="user_email" placeholder="Email">

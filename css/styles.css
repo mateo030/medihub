@@ -40,116 +40,106 @@ th {
     font-weight: 400;
 }
 
-/* Header */
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 2.5em;
-    padding-right: 2.5em;
-    height: 5.5em;
-}
-
-.logo {
-    display: flex;
-    gap: 5px;
-}
-
-.logo img {
-    height: 50px;
-    width: 50px;
-}
-
-.logo h1 {
-    font-weight: 400;
-}
-
-span {
-    color: #007acc;
-}
-
-nav {
-    height: inherit;
-    display: flex;
-    align-items: center;
-}
-
-.navigation ul li {
-    display: inline;
-    font-size: 20px;
-    margin: 20px;
-    transition: 0.3s;
-}
-
-.navigation ul li:hover {
-    cursor: pointer;
-    color: rgb(150, 150, 150);
-    transition: 0.3s;
-}
-
-/* Header End */
 
 /* HOME PAGE */
 
-
-.hero img {
-    width: 100%;
-    position: relative;
-}
-
-.hero h1 {
-    text-align: center;
-    background-color: #007acc;
-    position: absolute;
-}
-
-
-.container {
+.main__page {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    gap: 2.5em;
-    margin: 4em;
+    justify-content: space-between;
+    align-items: center;
+    height: inherit;
 }
 
-.container__wrapper {
+.main__left {
+    width: 50%;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 2.5em;
-    width: 500px;
-    height: 150px;
 }
 
-.items {
-    margin: 4em;
-    padding: 4em;
-}
-
-.items__header {
-    text-align: center;
-}
-
-.items__wrapper {
+.main__logo {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    gap: 2.5em;
-    margin-top: 4em;
-    margin-bottom: 4em;
+    align-items: center;
+    gap: 12px;
 }
 
-.item {
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    padding: 15px;
-}
-
-.item h1 {
-    text-align: center;
+.main__logo span {
     color: #007acc;
 }
+.main__logo h1 {
+    font-size: 42px;
+}
+
+.main__logo img {
+    height: 100px;
+    width: 100px;
+}
+
+.main__right {
+    background-color: #00263f;
+    height: inherit;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main__form {
+}
+
+.main__form input {
+    width: 500px;
+    padding: 14px;
+    font-size: 16px;
+    margin: 10px 0 0 0;
+}
+
+.main__input-small input {
+    width: 250px;
+}
+
+.form__flex {
+    display: flex;
+    flex-direction: row;
+}
+
+.main__form h1 {
+    color: #fff;
+}
+
+.main__form p {
+    color: #fff;
+}
+
+.main__form a {
+    color: #007acc;
+}
+
+.main__birthdate small {
+    color: #fff;
+}
+
+.main__gender input{
+    all: revert;
+}
+
+.main__form button {
+    border: none;
+    padding: 10px 15px;
+    margin-top: 10px;
+    background-color: #007acc;
+    color: #fff;
+    transition: 0.2s;
+}
+
+.main__form button:hover {
+    cursor: pointer;
+    background-color: #2496e2;
+    transition: 0.2s;
+}
+
 
 /* HOME PAGE END */
 
@@ -163,7 +153,7 @@ nav {
 }
 
 .form__card {
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    background-color: #f1f1f1;
     width: fit-content;
     padding: 15px;
 }
@@ -187,10 +177,6 @@ nav {
     width: 100%;
 }
 
-.form__gender input{
-    all: revert;
-}
-
 .radio_container {
     display: flex;
     flex-direction: row;
@@ -203,7 +189,7 @@ nav {
 
 .form__card button {
     color: #fff;
-    background-color: #2CA58D;
+    background-color: #007acc;
     border:none;
     padding: 15px;
     font-size: 16px;
@@ -220,6 +206,8 @@ nav {
     border: 1px solid #8b373f;
     padding: 10px;
 }
+
+
 
 .error__message p {
     color: #721c24; 
@@ -568,24 +556,36 @@ td button:hover {
     cursor: pointer;
 }
 
-/* DOCTOR MODAL */
+/* PRESCRIPTIONS */
 
-.doctor__card {
+
+.prescription__form form {
     display: flex;
-    flex-direction: row;
-    gap: 5em;
-    padding: 2em 4em;
-    align-items: center;
+    gap: 5px;
 }
 
-.doctor__icon i {
-    font-size: 64px;
+.prescription__form select {
+    height: 100%;
+    width: 200px;
 }
 
-.doctor__top {
-    border-bottom: 1px solid #d8d8d8;
+.prescription__form input {
+    height: inherit;
 }
 
-.doctor__top p {
-    color: #007acc;
+.prescription__form__meds input {
+    height: 100%;
+}
+
+.prescription__textarea textarea {
+    height: 100%;
+    resize: none;
+    width: 400px;
+}
+
+.prescription__form button {
+    border: none;
+    color: #fff;
+    background-color: #007acc;
+    padding: 0px 5px;
 }

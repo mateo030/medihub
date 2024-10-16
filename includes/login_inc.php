@@ -21,12 +21,16 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
         array_push($errors, 'Input all fields');
     }
 
+    if(passwordIsIncorrect($pdo, $user_email, $user_pass)) {
+        array_push($errors,'Username or password is incorrect!');
+    }
+
 
     session_start();
 
     if($errors) {
         $_SESSION['error_login'] = $errors;
-        header('Location:../login.php');
+        header('Location:../index.php');
     }
 
     login($pdo, $user_email, $user_pass);

@@ -58,14 +58,15 @@ connect_DB();
                 <a href="doc_prescriptions.php">
                     <div class="nav__wrapper">
                         <i class="fa-solid fa-prescription-bottle-medical"></i>
-                        <p>Prescriptions</p>
+                        <a><p>Prescriptions</p></a>
                     </div>
                 </a>
+                
             </div>
         </div>
         <div class="main">
             <div class="main__header">
-                <h2>My Appointments</h2>
+                <h2>Prescriptions</h2>
                 <div class="date">
                     <div class="today__date">
                         <p>Today's Date</p>
@@ -76,66 +77,40 @@ connect_DB();
                     </div>
                 </div>
             </div>
-            <div class="appointment__status">
-                <div class="status__card">
-                    <div class="status__text">
-                        <h2><?php echo returnAppointmentCount($_SESSION['doctor_id'], 'Pending')?></h2>
-                        <p>Pending Appointments</p>
-                    </div>
+            <div class="prescription__form">
+                <form action="../../includes/prescriptions.php" method="POST">
+                    <input type="hidden" name="doctor_id" value="<?= $_SESSION['doctor_id']?>">
                     <div>
-                        <i class="fa-solid fa-hospital-user" style="color: #FFDB39;"></i>
+                        <select name="patient_id">
+                            <option value="">Patients</option>
+                            <?php echo displayAppointmentOptions($_SESSION['doctor_id']) ?>
+                        </select>
                     </div>
-                </div>
-                <div class="status__card">
-                    <div class="status__text">
-                        <h2><?php echo returnAppointmentCount($_SESSION['doctor_id'], 'Confirmed')?></h2>
-                        <p>Confirmed Appointments</p>
+                    <div class="prescription__form__meds">
+                        <input name="medication" placeholder="Medication">
+                        <input name="dosage" placeholder="Dosage">
+                        <input name="duration" placeholder="Duration">
                     </div>
-                    <div>
-                        <i class="fa-solid fa-hospital-user" style="color:#2CA58D"></i>
+                    <div class="prescription__textarea">
+                        <textarea name="notes"></textarea>
                     </div>
-                </div>
-                <div class="status__card">
-                    <div class="status__text">
-                        <h2><?php echo returnAppointmentCount($_SESSION['doctor_id'], 'Confirmed') + returnAppointmentCount($_SESSION['doctor_id'], 'Pending')?></h2>
-                        <p>Total Appointments</p>
-                    </div>
-                    <div>
-                        <i class="fa-solid fa-hospital-user"></i>
-                    </div>
-                </div>
+                    <button>Prescribe</button>
+                </form>
             </div>
-            <div class="appointments__table">
-                <h2 style="color: #007acc">Pending Appointments</h2>
+            <div class="prescriptions_table">
+                <h2 style="color: #007acc">Prescribed Patients</h2>
                 <table>
                     <tr>
-                        <th>Apt No.</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Patient</th>
-                        <th>Contact</th>
-                        <th></th>
-                        <th>Status</th>
+                        <th>Name</th>
+                        <th>Medication</th>
+                        <th>Dosage</th>
+                        <th>Duration</th>
+                        <th>Notes</th>
                     </tr>
-                    <?php displayAppointmentTable($_SESSION['doctor_id'], 'Pending')?>
+                    <?php displayPrescriptions($_SESSION['doctor_id'])?>
                 </table>
             </div>
-            <div class="appointments__table">
-                <h2 style="color: #007acc">Confirmed Appointments</h2>
-                <table>
-                    <tr>
-                        <th>Apt No.</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Patient</th>
-                        <th>Contact</th>
-                        <th></th>
-                        <th>Status</th>
-                    </tr>
-                    <?php displayAppointmentTable($_SESSION['doctor_id'], 'Confirmed')?>
-                </table>
-            </div>
-        </div>    
+        </div>
     </div>
 </body>
 

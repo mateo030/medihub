@@ -31,8 +31,11 @@ function returnAppointmentData($user_id, $status) {
     patients.user_email AS patient_email,
     patients.gender AS patient_gender,
     patients.address AS patient_address
-    FROM appointments INNER JOIN patients ON appointments.patient_id=patients.patient_id 
-    INNER JOIN doctors ON appointments.doctor_id=doctors.doctor_id 
+    FROM appointments 
+    INNER JOIN 
+    patients ON appointments.patient_id=patients.patient_id 
+    INNER JOIN 
+    doctors ON appointments.doctor_id=doctors.doctor_id 
     WHERE appointments.patient_id = :patient_id AND appointments.status = :status';
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':patient_id', $user_id);
@@ -63,4 +66,38 @@ function confirmAppointment($appointment_id) {
     $stmt->bindParam(':appointment_id', $appointment_id);
     $stmt->execute();
 
+}
+
+function insertPrescription($patient_id, $doctor_id, $medication, $dosage, $duration, $notes) {
+
+    $pdo = connect_DB();
+    $query = 'INSERT INTO prescriptions (patient_id, doctor_id, medication, dosage, duration, notes) VALUES (:patient_id, :doctor_id, :medication, :dosage, :duration, :notes)';
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam('patient_id', $patient_id);
+    $stmt->bindParam('doctor_id', $doctor_id);
+    $stmt->bindParam('medication', $medication);
+    $stmt->bindParam('dosage', $dosage);
+    $stmt->bindParam('duration', $duration);
+    $stmt->bindParam('notes', $notes);
+    $stmt->execute();
+}
+
+function returnDoctorsPrescriptionData($user_id) {
+
+    $pdo = connect_DB();
+    $query = 'SELECT * FROM prescriptions INNER JOIN patients ON prescriptions.patient_id=patients.patient_id WHERE prescriptions.doctor_id = :doctor_id';
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':doctor_id', $user_id);
+    $stmt->execute();
+    return $stmt->fetchAll(pdo::FETCH_ASSOC);
+}
+
+function returnPatientsPrescriptionData($user_id) {
+
+    $pdo = connect_DB();
+    $query = 'SELECT * FROM prescriptions INNER JOIN doctors ON prescriptions.doctor_id=doctors.doctor_id WHERE prescriptions.patient_id = :patient_id';
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':patient_id', $user_id);
+    $stmt->execute();
+    return $stmt->fetchAll(pdo::FETCH_ASSOC);
 }

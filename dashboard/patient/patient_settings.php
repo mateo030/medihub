@@ -7,11 +7,10 @@ connect_DB();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Doctor List</title>
     <link rel="stylesheet" href="../../css/styles.css">
     <script src="https://kit.fontawesome.com/492cd470a0.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,18 +19,17 @@ connect_DB();
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 </head>
-
 <body>
-<div class="dashboard__container">
+    <div class="dashboard__container">
         <div class="side__menu">
             <div class="upper__nav">
                 <div class="current__user">
                     <div>
-                        <i class="fa-solid fa-user-doctor"></i>
+                        <i class="fa-solid fa-user"></i>
                     </div>
                     <div class="user__name">
-                        <h1><?php echo $_SESSION['first_name'] . " " . $_SESSION['last_name'] ?></h1>
-                        <p><?php echo $_SESSION['user_email'] ?></p>
+                        <h1><?php echo $_SESSION['first_name'] . " " .$_SESSION['last_name']?></h1>
+                        <p><?php echo $_SESSION['user_email']?></p>
                     </div>
                 </div>
                 <a href="../../includes/logout_inc.php">Log out</a>
@@ -40,16 +38,16 @@ connect_DB();
                 <a href="dashboard.php">
                     <div class="nav__wrapper">
                         <i class="fa-solid fa-house"></i>
-                        <p>Dashboard</p>
+                        <p>Home</p>
                     </div>
                 </a>
-                <a href="patients.php">
+                <a href="doctor_list.php">
                     <div class="nav__wrapper">
-                        <i class="fa-solid fa-user"></i>
-                        <p>My Patients</p>
+                        <i class="fa-solid fa-user-doctor"></i>
+                        <p>All Doctors</p>
                     </div>
                 </a>
-                <a href="doc_appointments.php">
+                <a href="appointments.php">
                     <div class="nav__wrapper">
                         <i class="fa-solid fa-hospital-user"></i>
                         <p>Appointments</p>
@@ -61,11 +59,15 @@ connect_DB();
                         <p>Prescriptions</p>
                     </div>
                 </a>
+                <div class="nav__wrapper">
+                    <i class="fa-solid fa-gear"></i>
+                    <a><p>Settings</p></a>
+                </div>
             </div>
         </div>
         <div class="main">
             <div class="main__header">
-                <h2>Home</h2>
+                <h2>Your info</h2>
                 <div class="date">
                     <div class="today__date">
                         <p>Today's Date</p>
@@ -76,26 +78,28 @@ connect_DB();
                     </div>
                 </div>
             </div>
-            <div class="main__table">
-                <div class="main__search">
-                    <form>
-                        <input type="text" placeholder="Search patient name">
-                        <button>Search</button>
-                    </form>
+            <div class="user__info">
+                <div class="user__name">
+                    <h2>First Name</h2>
+                    <p><?= $_SESSION['first_name']?></p>
+                    <h2>Last Name</h2>
+                    <p><?= $_SESSION['last_name']?></p>
                 </div>
-                <table class="doctor__table">
-                    <tr>
-                        <th>Name</th>
-                        <th>Phone Number</th>
-                        <th>Email</th>
-                        <th>Gender</th>
-                        <th>Address</th>
-                    </tr>
-                    <?php displayPatients($_SESSION['doctor_id'])?>
-                </table>
+                <div class="user_email">
+                    <h2>Email</h2>
+                    <?= $_SESSION['user_email']?>
+                </div>
+                <div class="user__contact">
+                    <h2>Phone Number</h2>
+                    <p><?= $_SESSION['contact_number']?></p>
+                </div>
+                <div class="user_address">
+                    <h2>Address</h2>
+                    <?= $_SESSION['address']?>
+                </div>
             </div>
         </div>
     </div>
+    <script src="../../scripts/script.js"></script>
 </body>
-
 </html>

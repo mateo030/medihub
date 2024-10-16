@@ -71,7 +71,7 @@ connect_DB();
         </div>
         <div class="main">
             <div class="main__header">
-                <h2>Home</h2>
+                <h2>Prescriptions</h2>
                 <div class="date">
                     <div class="today__date">
                         <p>Today's Date</p>
@@ -82,72 +82,18 @@ connect_DB();
                     </div>
                 </div>
             </div>
-            <div class="main__banner">
-                <div class="main__banner__text">
-                    <div>
-                        <h2>Welcome</h2>
-                        <h1><?php echo $_SESSION['first_name'] ?>.</h1>
-                    </div>
-                    <div>
-                        <p>Track your past appointment history.</p><br>
-                        <p>Also find out the expected arrival time of your doctor or medical consultant</p>
-                    </div>
-                    <div class="main__search">
-                        <h2>Find a doctor</h2>
-                        <form>
-                            <input type="text" placeholder="Search a doctor and we will find a session available">
-                            <button>Search</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="main__info">
-                <div class="status__container">
-                    <h2>Status</h2>
-                    <div class="status">
-                        <div class="status__card">
-                            <div>
-                                <h2><?php echo returnDoctorCount() ?></h2>
-                                <p>Available Doctors</p>
-                            </div>
-                            <div>
-                                <i class="fa-solid fa-user-doctor"></i>
-                            </div>
-                        </div>
-                        <div class="status__card">
-                            <div>
-                                <h2><?= returnPatientPrescriptionCount($_SESSION['patient_id'])?></h2>
-                                <p>Prescriptions</p>
-                            </div>
-                            <div>
-                                <i class="fa-solid fa-prescription-bottle-medical"></i>
-                            </div>
-                        </div>
-                        <div class="status__card">
-                            <div class="status__text">
-                                <h2><?= returnAppointmentCount($_SESSION['patient_id'], 'Confirmed')?></h2>
-                                <p>My Appointments</p>
-                            </div>
-                            <div>
-                                <i class="fa-solid fa-hospital-user"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="booking__container">
-                    <h2>Your upcoming appointments</h2>
-                    <div class="bookings">
-                        <table>
-                            <tr>
-                                <th>Appointment No.</th>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Doctor</th>
-                            </tr>
-                            <?= displayMiniAppointmentTable($_SESSION['patient_id']) ?>
-                        </table>
-                    </div>
-                </div>
+            <div class="prescriptions_table">
+                <h2 style="color: #007acc">Prescriptions</h2>
+                <table>
+                    <tr>
+                        <th>Doctor</th>
+                        <th>Medication</th>
+                        <th>Dosage</th>
+                        <th>Duration</th>
+                        <th>Notes</th>
+                    </tr>
+                    <?php displayPatientPrescriptions($_SESSION['patient_id'])?>
+                </table>
             </div>
         </div>
     </div>

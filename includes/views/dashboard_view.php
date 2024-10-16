@@ -69,7 +69,7 @@ function displayAppointmentTable($user_id, $status) {
                 <td><?= $row['appointment_time'] ?></td>
                 <td><?php if (isset($_SESSION['doctor_id'])) { ?> <?= $row['patient_first_name'] . " " .$row['patient_last_name'] ?> <?php ;} else { ?> <?= $row['doctor_first_name'] . " " .$row['doctor_last_name'] ?> <?php ; }?></td>
                 <td><?= $row['doctor_phone'] ?></td>
-                <td><?php if (isset($_SESSION['doctor_id']) && $row['status'] == 'Pending') { ?> <form action="../../includes/confirmation_inc.php" method="GET"><input type="hidden" name="appointment_id" value="<?= $row['appointment_id']?>"><button>Confirm Appointment</button></form> <?php ;} else { ?> Prescriptions <?php ; }?></td>
+                <td><?php if (isset($_SESSION['doctor_id']) && $row['status'] == 'Pending') { ?> <form action="../../includes/confirmation_inc.php" method="GET"><input type="hidden" name="appointment_id" value="<?= $row['appointment_id']?>"><button>Confirm Appointment</button></form> <?php ;} else { ?> <a href="doc_prescriptions.php">Prescriptions</a> <?php ; }?></td>
                 <td style="<?php if($row['status'] == 'Pending') {echo 'color: #FFDB39';}?>"><?= $row['status'] ?></td>
             </tr>
         <?php
@@ -115,4 +115,59 @@ function displayMiniDocAppointments($user_id) {
     }
 }
 
+function displayAppointmentOptions($user_id) {
+    require_once '../../includes/models/dashboard_model.php';
+    $rows = returnAppointmentData($user_id, 'Confirmed');
+    if (!empty($rows)) {
+        foreach($rows as $row) {
+        ?>
+            <option value="<?= $row['patient_id']?>"><?= $row['patient_first_name'] . " " . $row['patient_last_name']?></option>
+        <?php
+        }
+    }
+}
 
+function displayPrescriptions($doctor_id) {
+    require_once '../../includes/models/dashboard_model.php';
+    $rows = returnDoctorsPrescriptionData($doctor_id);
+    if (!empty($rows)) {
+        foreach($rows as $row) {
+        ?>
+            <tr>
+                <td><?= $row['first_name'] . " " . $row['last_name']?></td>
+                <td><?= $row['medication']?></td>
+                <td><?= $row['dosage']?></td>
+                <td><?= $row['duration']?></td>
+                <td><?= $row['notes']?></td>
+            </tr>
+        <?php
+        }
+    }
+}
+
+function displayPatientPrescriptions($user_id) {
+
+    require_once '../../includes/models/dashboard_model.php';
+    $rows = returnPatientsPrescriptionData($user_id);
+    if (!empty($rows)) {
+        foreach($rows as $row) {
+        ?>
+            <tr>
+                <td><?= $row['first_name'] . " " . $row['last_name']?></td>
+                <td><?= $row['medication']?></td>
+                <td><?= $row['dosage']?></td>
+                <td><?= $row['duration']?></td>
+                <td><?= $row['notes']?></td>
+            </tr>
+        <?php
+        }
+    }
+
+}
+
+function returnPatientPrescriptionCount($user_id) {
+    require_once '../../includes/models/dashboard_model.php';
+    $count = count(returnPatientsPrescriptionData($user_id));
+
+    return $count;
+}
